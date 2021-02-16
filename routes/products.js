@@ -9,6 +9,7 @@ const {
   fetchProduct,
 } = require("../controllers/productControllers");
 const router = express.Router();
+const upload = require("../middleware/multer");
 
 router.param("productId", async (req, res, next, productId) => {
   const foundProduct = await fetchProduct(productId, next);
@@ -23,8 +24,11 @@ router.param("productId", async (req, res, next, productId) => {
   }
 });
 
+//single means uploading one image only
+//image: the name of the model feild
+
 //ADD NEW PRODUCT
-router.post("/", productCreate);
+router.post("/", upload.single("image"), productCreate);
 //PRODUCT LIST
 router.get("/", productList);
 
@@ -35,6 +39,6 @@ router.get("/:productId", productDetail);
 router.delete("/:productId", productDelete);
 
 //UPDATE
-router.put("/:productId", productUpdate);
+router.put("/:productId", upload.single("image"), productUpdate);
 
 module.exports = router;

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         min: 1,
       },
     },
-    image: { type: DataTypes.STRING, validate: { isUrl: true } },
+    image: { type: DataTypes.STRING },
   });
   SequelizeSlugify.slugifyModel(Product, {
     source: ["name"],
