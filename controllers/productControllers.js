@@ -12,7 +12,7 @@ exports.fetchProduct = async (productId, next) => {
 exports.productList = async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      attributes: { exclude: ["createdAt", "updatedAt"] },
+      attributes: req.body,
       include: {
         model: Shop,
         as: "shop",
