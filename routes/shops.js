@@ -1,5 +1,4 @@
 const express = require("express");
-const { Shop } = require("../db/models");
 const {
   productCreate,
   shopCreate,
